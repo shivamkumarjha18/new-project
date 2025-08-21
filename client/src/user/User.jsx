@@ -9,14 +9,14 @@ function User() {
   const [selectedSubcategory, setSelectedSubcategory] = useState(null);
 
   useEffect(() => {
-    fetch("http://localhost:8000/api/categories")
+    fetch("https://new-client-asea.onrender.com/api/categories")
       .then(res => res.json())
       .then(setCategories);
   }, []);
 
   useEffect(() => {
     if (selectedCategory) {
-      fetch(`http://localhost:8000/api/subcategories/${selectedCategory}`)
+      fetch(`https://new-client-asea.onrender.com/api/subcategories/${selectedCategory}`)
         .then(res => res.json())
         .then(setSubcategories);
       setProducts([]);
@@ -25,7 +25,7 @@ function User() {
 
   useEffect(() => {
     if (selectedSubcategory) {
-      fetch(`http://localhost:8000/api/products/${selectedSubcategory}`)
+      fetch(`https://new-client-asea.onrender.com/api/products/${selectedSubcategory}`)
         .then(res => res.json())
         .then(setProducts);
     }

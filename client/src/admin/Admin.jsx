@@ -16,14 +16,14 @@ function Admin() {
 
   // Fetch Categories
   useEffect(() => {
-    fetch("http://localhost:8000/api/categories")
+    fetch("https://new-client-asea.onrender.com/api/categories")
       .then(res => res.json())
       .then(setCategories);
   }, []);
 
   useEffect(() => {
     if (selectedCategory) {
-      fetch(`http://localhost:8000/api/subcategories/${selectedCategory}`)
+      fetch(`https://new-client-asea.onrender.com/api/subcategories/${selectedCategory}`)
         .then(res => res.json())
         .then(setSubcategories);
     }
@@ -31,7 +31,7 @@ function Admin() {
 
   useEffect(() => {
     if (selectedSubcategory) {
-      fetch(`http://localhost:8000/api/products/${selectedSubcategory}`)
+      fetch(`https://new-client-asea.onrender.com/api/products/${selectedSubcategory}`)
         .then(res => res.json())
         .then(setProducts);
     }
@@ -43,7 +43,7 @@ function Admin() {
 
     if (editMode.type === "category") {
       // UPDATE
-      fetch(`http://localhost:8000/api/categories/${editMode.id}`, {
+      fetch(`https://new-client-asea.onrender.com/api/categories/${editMode.id}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ name: newCategory })
@@ -56,7 +56,7 @@ function Admin() {
         });
     } else {
       // ADD
-      fetch("http://localhost:8000/api/categories", {
+      fetch("https://new-client-asea.onrender.com/api/categories", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ name: newCategory })
@@ -70,7 +70,7 @@ function Admin() {
   };
 
   const deleteCategory = id => {
-    fetch(`http://localhost:8000/api/categories/${id}`, { method: "DELETE" }).then(() => {
+    fetch(`https://new-client-asea.onrender.com/api/categories/${id}`, { method: "DELETE" }).then(() => {
       setCategories(categories.filter(c => c._id !== id));
       if (selectedCategory === id) {
         setSelectedCategory(null);
@@ -85,7 +85,7 @@ function Admin() {
     e.preventDefault();
 
     if (editMode.type === "subcategory") {
-      fetch(`http://localhost:8000/api/subcategories/${editMode.id}`, {
+      fetch(`https://new-client-asea.onrender.com/api/subcategories/${editMode.id}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ name: newSubcategory, category: selectedCategory })
@@ -97,7 +97,7 @@ function Admin() {
           setEditMode({ type: null, id: null });
         });
     } else {
-      fetch("http://localhost:8000/api/subcategories", {
+      fetch("https://new-client-asea.onrender.com/api/subcategories", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ name: newSubcategory, category: selectedCategory })
@@ -111,7 +111,7 @@ function Admin() {
   };
 
   const deleteSubcategory = id => {
-    fetch(`http://localhost:8000/api/subcategories/${id}`, { method: "DELETE" }).then(() => {
+    fetch(`https://new-client-asea.onrender.com/api/subcategories/${id}`, { method: "DELETE" }).then(() => {
       setSubcategories(subcategories.filter(s => s._id !== id));
       if (selectedSubcategory === id) {
         setSelectedSubcategory(null);
@@ -125,7 +125,7 @@ function Admin() {
     e.preventDefault();
 
     if (editMode.type === "product") {
-      fetch(`http://localhost:8000/api/products/${editMode.id}`, {
+      fetch(`https://new-client-asea.onrender.com/api/products/${editMode.id}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ ...newProduct, subcategory: selectedSubcategory })
@@ -137,7 +137,7 @@ function Admin() {
           setEditMode({ type: null, id: null });
         });
     } else {
-      fetch("http://localhost:8000/api/products", {
+      fetch("https://new-client-asea.onrender.com/api/products", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ ...newProduct, subcategory: selectedSubcategory })
@@ -151,7 +151,7 @@ function Admin() {
   };
 
   const deleteProduct = id => {
-    fetch(`http://localhost:8000/api/products/${id}`, { method: "DELETE" }).then(() => {
+    fetch(`https://new-client-asea.onrender.com/api/products/${id}`, { method: "DELETE" }).then(() => {
       setProducts(products.filter(p => p._id !== id));
     });
   };
